@@ -13,8 +13,10 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y install apache2
 # 安装php
 RUN apt-get -y install php5.6 php5.6-gd php5.6-cgi php5.6-mysql php5.6-xml php5.6-json php5.6-mcrypt php5.6-common php5.6-dev
-# 使Apache2可以解析php
-RUN apt-get -y install libapache2-mod-php5.6
+# 使Apache2可以解析php,关闭目录浏览,解析.htaccess
+RUN apt-get -y install libapache2-mod-php5.6 &&\
+    sed -i "171 s/Indexes//" /etc/apache2/apache2.conf &&\
+    sed -i '172 s/None/all/' /etc/apache2/apache2.conf 
 
 # 把源码放入容器
 COPY ./src /var/www/html
