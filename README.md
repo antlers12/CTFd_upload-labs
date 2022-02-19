@@ -53,6 +53,8 @@ ENV LANG C.UTF-8
 # 选择构建第几题的镜像，这里举例第11题，因为有需要，我对题目的提示信息进行了隐藏
 RUN mv /var/www/html/Pass-11 /var/www/html/PassTemp
 RUN rm -rf /var/www/html/Pass-*
+# 除第14~17、19是需要先上传图片马再利用include.php包含利用,其它的题目都需要去除include.php文件
+RUN rm /var/www/html/include.php
 RUN sed -i '11 a <script type="text/javascript">window.location.href="./PassTemp";</script>' /var/www/html/index.php
 # 隐藏提示信息
 RUN rm -rf /var/www/html/menu.php &&\
