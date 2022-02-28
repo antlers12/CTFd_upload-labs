@@ -66,6 +66,12 @@ RUN rm -rf /var/www/html/menu.php &&\
 EXPOSE 80
 ```
 
+直接生成题目镜像
+
+```
+docker build . -t upload_11
+```
+
 **docker-compose.yml**
 
 ```
